@@ -3,8 +3,10 @@ package com.demo.util;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import com.demo.entities.DomesticPet;
 import com.demo.entities.Owner;
 import com.demo.entities.Pet;
+import com.demo.entities.WildPet;
 import com.demo.enumValue.Gender;
 
 public class InputUtil {
@@ -38,14 +40,9 @@ public class InputUtil {
 	}
 
 	public static Owner acceptOwnerDetailsToSave(Scanner scanner) {
-//		System.out.println("Enter id of owner:");
-//		int id = scanner.nextInt();
 		
 		System.out.println("Enter first name of owner:");
 		String name = scanner.next();
-		
-//		System.out.println("Enter last name of owner:");
-//		String lastName = scanner.next();
 		
 		System.out.println("Enter gender of owner:" + Arrays.asList(Gender.values()).toString());
 		String gender = scanner.next().toUpperCase();
@@ -56,23 +53,14 @@ public class InputUtil {
 		System.out.println("Enter state of owner:");
 		String state = scanner.next();
 		
-//		System.out.println("Enter mobile number of owner:");
-//		String mobileNumber = scanner.next();
-		
-//		System.out.println("Enter email id of owner:");
-//		String emailId = scanner.next();
 		try {
 			Owner Owner = new Owner();
-//			Owner.setId(id);
-//			Owner.setLastName(lastName);
 			Owner.setName(name);
 			
 			Owner.setGender(Gender.valueOf(gender));
 			Owner.setCity(city);
 			Owner.setState(state);
 			
-//			Owner.setMobileNumber(mobileNumber);
-//			Owner.setEmailId(emailId);
 			return Owner;
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
@@ -81,42 +69,40 @@ public class InputUtil {
 	}
 
 	public static Pet acceptPetDetailsToSave(Scanner scanner) {
-//		System.out.println("Enter id of pet:");
-//		int petId = scanner.nextInt();
 		System.out.println("Enter name of pet:");
 		String petName = scanner.next();
 		
-//		System.out.println("Press D for domestic pet and W for wild pet.");
-//		char choice = scanner.next().toUpperCase().charAt(0);
+		System.out.println("Press D for domestic pet and W for wild pet.");
+		char choice = scanner.next().toUpperCase().charAt(0);
 		
-//		String petPlaceOfBirth = null;
-//		String petDateOfBirth = null;
-//		if ('W' == choice) {
-//			System.out.println("Enter place of birth of pet:");
-//			petPlaceOfBirth = scanner.next();
-//		} else if ('D' == choice) {
-//			System.out.println("Enter date of birth of pet (dd-MM-yyyy):");
-//			petDateOfBirth = scanner.next();
-//		}
+		String petPlaceOfBirth = null;
+		String petDateOfBirth = null;
+		
+		if ('W' == choice) {
+			System.out.println("Enter place of birth of pet:");
+			petPlaceOfBirth = scanner.next();
+		} else if ('D' == choice) {
+			System.out.println("Enter date of birth of pet (dd-MM-yyyy):");
+			petDateOfBirth = scanner.next();
+		}
+		
 		System.out.println("Enter gender of pet:" + Arrays.asList(Gender.values()).toString());
 		String petGender = scanner.next().toUpperCase();
-//		System.out.println("Enter pet type:" + Arrays.asList(PetType.values()).toString());
-//		String petType = scanner.next().toUpperCase();
+
 		try {
-			Pet pet = new Pet();
-//			if ('D' == choice) {
-//				petDTO = new DomesticPetDTO();
-//				((DomesticPetDTO) petDTO).setBirthDate(convertStringToDate(petDateOfBirth));
-//			} else if ('W' == choice) {
-//				petDTO = new WildPetDTO();
-//				((WildPetDTO) petDTO).setBirthPlace(petPlaceOfBirth);
-//			} else {
-//				throw new IllegalArgumentException("Unsupported pet choice: " + choice);
-//			}
-//			pet.setId(petId);
+			Pet pet = null;
+			if ('D' == choice) {
+				pet = new DomesticPet();
+				((DomesticPet) pet).setDob(petGender);
+			} else if ('W' == choice) {
+				pet = new WildPet();
+				((WildPet) pet).setPlace(petPlaceOfBirth);
+			} else {
+				throw new IllegalArgumentException("Unsupported pet choice: " + choice);
+			}
+			
 			pet.setName(petName);
 			pet.setGender(Gender.valueOf(petGender));
-//			petDTO.setType(PetType.valueOf(petType));
 			return pet;
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
@@ -161,9 +147,6 @@ public class InputUtil {
 		}
 	}
 
-//	private static LocalDate convertStringToDate(String stringDate) {
-//		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//		return LocalDate.parse(stringDate, format);
-//	}
+
 	
 }

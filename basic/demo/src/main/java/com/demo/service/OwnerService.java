@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.entities.DomesticPet;
 import com.demo.entities.Owner;
 import com.demo.entities.Pet;
+import com.demo.entities.WildPet;
 import com.demo.enumValue.Gender;
 import com.demo.exception.OwnerDuplicateException;
 import com.demo.exception.OwnerNotFoundException;
@@ -79,63 +81,70 @@ public class OwnerService {
 
 	public void saveInitValue() {
 		Owner owner1 = new Owner();
-		owner1.setName("raja");
-		owner1.setAge(30);
-		owner1.setGender(Gender.valueOf("M"));
-		owner1.setCity("Theni");
-		owner1.setState("TN");
-		Pet pet = new Pet();
-		pet.setName("janu");
-		pet.setGender(Gender.valueOf("F"));
+			owner1.setName("raja");
+			owner1.setAge(30);
+			owner1.setGender(Gender.valueOf("M"));
+			owner1.setCity("Theni");
+			owner1.setState("TN");
+		Pet pet = new DomesticPet();
+			pet.setName("janu");
+			pet.setGender(Gender.valueOf("F"));
+			((DomesticPet)pet).setDob("2.2.2010");
+		
 		owner1.setPet(pet);
 		ownerRepo.saveOwner(owner1);
 
 		Owner owner2 = new Owner();
-		owner2.setName("raja");
-		owner2.setAge(30);
-		owner2.setGender(Gender.valueOf("M"));
-		owner2.setCity("Theni");
-		owner2.setState("TN");
-		Pet pet2 = new Pet();
-		pet2.setName("yanna");
-		pet2.setGender(Gender.valueOf("F"));
-		owner2.setPet(pet2);
+			owner2.setName("raja");
+			owner2.setAge(30);
+			owner2.setGender(Gender.valueOf("M"));
+			owner2.setCity("Theni");
+			owner2.setState("TN");
+		Pet pet2 = new WildPet();
+			pet2.setName("yanna");
+			pet2.setGender(Gender.valueOf("F"));
+			((WildPet)pet2).setPlace("rajapalaiyam");
+			owner2.setPet(pet2);
+			
 		ownerRepo.saveOwner(owner2);
 
 		Owner owner3 = new Owner();
-		owner3.setName("raja");
-		owner3.setAge(30);
-		owner3.setGender(Gender.valueOf("M"));
-		owner3.setCity("Theni");
-		owner3.setState("TN");
-		Pet pet3 = new Pet();
-		pet3.setName("icala");
-		pet3.setGender(Gender.valueOf("F"));
-		owner3.setPet(pet3);
+			owner3.setName("raja");
+			owner3.setAge(30);
+			owner3.setGender(Gender.valueOf("M"));
+			owner3.setCity("Theni");
+			owner3.setState("TN");
+		Pet pet3 = new DomesticPet();
+			pet3.setName("icala");
+			pet3.setGender(Gender.valueOf("M"));
+			owner3.setPet(pet3);
+			((DomesticPet)pet3).setDob("2.2.2010");
 		ownerRepo.saveOwner(owner3);
 
 		Owner owner4 = new Owner();
-		owner4.setName("mohan");
-		owner4.setAge(24);
-		owner4.setGender(Gender.valueOf("M"));
-		owner4.setCity("madurai");
-		owner4.setState("TN");
-		Pet pet4 = new Pet();
-		pet4.setName("john");
-		pet4.setGender(Gender.valueOf("F"));
-		owner4.setPet(pet4);
+			owner4.setName("mohan");
+			owner4.setAge(24);
+			owner4.setGender(Gender.valueOf("M"));
+			owner4.setCity("madurai");
+			owner4.setState("TN");
+		Pet pet4 = new WildPet();
+			pet4.setName("john");
+			pet4.setGender(Gender.valueOf("F"));
+			((WildPet)pet4).setPlace("madurai");
+			owner4.setPet(pet4);
 		ownerRepo.saveOwner(owner4);
 
 		Owner owner5 = new Owner();
-		owner5.setName("ammu");
-		owner5.setAge(32);
-		owner5.setGender(Gender.valueOf("M"));
-		owner5.setCity("thirumal");
-		owner5.setState("TN");
-		Pet pet5 = new Pet();
-		pet5.setName("jakie");
-		pet5.setGender(Gender.valueOf("F"));
-		owner5.setPet(pet5);
+			owner5.setName("ammu");
+			owner5.setAge(32);
+			owner5.setGender(Gender.valueOf("M"));
+			owner5.setCity("thirumal");
+			owner5.setState("TN");
+		Pet pet5 = new DomesticPet();
+			pet5.setName("jakie");
+			pet5.setGender(Gender.valueOf("M"));
+			((DomesticPet)pet5).setDob("2.2.2010");
+			owner5.setPet(pet5);
 		ownerRepo.saveOwner(owner5);
 	}
 }
